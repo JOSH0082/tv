@@ -22,7 +22,7 @@ include('../components/navBar.php');
       <div class="card-body">
         <h5 class="card-title">Beli Gas</h5>
         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="../gas" class="btn btn-info">Klik Disini</a>
+        <a href="../gas" class="btn btn-primary">Klik Disini</a>
       </div>
     </div>
   </div>

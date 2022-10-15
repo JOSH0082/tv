@@ -4,7 +4,7 @@ include('../administrator/functions.php');
 if(isset($_POST['simpan'])){
   if(beliGalon($_POST) > 0){
     $gagal = false;
-  }else{
+  }elseif(beliGalon($_POST) > 1){
     $gagal = true;
   }
 }
@@ -12,10 +12,11 @@ if(isset($_POST['simpan'])){
 include('../components/navBar.php');
 ?>
 
-<?php if($gagal === true):
-  echo mysqli_error($conn);?>
+<?php 
+global $gagal;
+if($gagal === true):?>
   <div class="alert alert-danger" role="alert">
-    gagal mengirim pesanan!
+  <?= mysqli_error($conn);?> gagal mengirim pesanan! 
   </div>
 <?php elseif($gagal === false):
   ?>
@@ -33,10 +34,10 @@ include('../components/navBar.php');
         <input type="number" name="jumlah_galon" class="form-control" required>
     </div>
 
-    <div class="col-lg-6 col-md-12 pb-4">
+    <!-- <div class="col-lg-6 col-md-12 pb-4">
         <span>harga galon :</span>
         <input type="number" name="harga_galon" class="form-control" required>
-    </div>
+    </div> -->
 
       <div class="col-lg-6 col-md-12 pb-4">
           <span>alamat :</span>

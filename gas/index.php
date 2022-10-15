@@ -1,7 +1,29 @@
 <?php
 include('../administrator/functions.php');
+
+if(isset($_POST['simpan'])){
+    if(beliGas($_POST) > 0){
+        $gagal = false;
+    }elseif(beliGas($_POST) > 1){
+        $gagal = true;
+    }
+}
+
 include('../components/navBar.php');
 ?>
+
+<?php 
+global $gagal;
+if($gagal === true):?>
+  <div class="alert alert-danger" role="alert">
+  <?= mysqli_error($conn);?> gagal mengirim pesanan! 
+  </div>
+<?php elseif($gagal === false):
+  ?>
+  <div class="alert alert-success" role="alert">
+    berhasil mengirim pesanan!
+  </div>
+<?php endif; ?>
 
 <div class="container position-absolute top-50 start-50 translate-middle">
 <form action="" method="post">
@@ -25,7 +47,7 @@ include('../components/navBar.php');
             <div class="row">
                 <div class="col-lg-6 col-md-12 pb-4">
                     <span>harga gas :</span>
-                    <input type="number" name="harga_gas" class="form-control" disabled required>
+                    <input type="number" name="harga_gas" class="form-control" required>
                 </div>
 
                 <div class="col-lg-6 col-md-12 pb-4">
@@ -33,6 +55,12 @@ include('../components/navBar.php');
                     <input type="text" name="pembeli_gas" class="form-control" required>
                 </div>
                 </div>
+
+            <div class="row">
+                <div class="col">
+                <button class="btn btn-info" name="simpan" type="submit">tukar gas!</button>
+                </div>
+            </div>
 
 </form>
 </div>
